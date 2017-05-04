@@ -1,0 +1,12 @@
+﻿@using SessionDemo.Models
+
+@{
+    ViewBag.Title = "Index";
+
+    LoginUserModel user = (LoginUserModel) Session[SessionHelper.USER];
+ 
+}
+
+
+<h2>WELCOME @user.UserName</h2>
+

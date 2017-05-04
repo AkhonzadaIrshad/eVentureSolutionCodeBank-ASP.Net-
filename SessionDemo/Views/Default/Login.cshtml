@@ -1,0 +1,14 @@
+﻿@using SessionDemo.Models;
+@model LoginUserModel
+@{
+    string message = ViewBag.NotFound == null ? "" : ViewBag.NotFound;
+}
+<h4>@message</h4>
+@using (Html.BeginForm("LogIn", "Default", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.UserName)
+    @Html.TextBoxFor(x => x.UserName)
+    @Html.LabelFor(x => x.Password)
+    @Html.PasswordFor(x => x.Password)
+    <button type="submit">Login</button>
+}

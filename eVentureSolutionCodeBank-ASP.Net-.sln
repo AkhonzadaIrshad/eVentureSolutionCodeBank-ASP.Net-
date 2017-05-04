@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionDemo", "SessionDemo\SessionDemo.csproj", "{F83F9340-28E7-435E-97D5-D979190FEFAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.Net MVC Applications", "ASP.Net MVC Applications", "{BCD419D1-C534-449A-B231-27D5D64E8621}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F83F9340-28E7-435E-97D5-D979190FEFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83F9340-28E7-435E-97D5-D979190FEFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83F9340-28E7-435E-97D5-D979190FEFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F83F9340-28E7-435E-97D5-D979190FEFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F83F9340-28E7-435E-97D5-D979190FEFAA} = {BCD419D1-C534-449A-B231-27D5D64E8621}
+	EndGlobalSection
+EndGlobal
