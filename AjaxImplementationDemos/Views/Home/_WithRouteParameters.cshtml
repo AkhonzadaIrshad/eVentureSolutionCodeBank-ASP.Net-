@@ -1,0 +1,26 @@
+﻿
+
+<div class="row">
+    <h4 class="text-center text-muted">Call with Routing Parameters</h4>
+</div>
+<br />
+<div class="row">
+    <h3 id="routParametersCallResponseMsg"></h3>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <select class="form-control" id="routParameterList">
+            @for (int i = 1; i <= 5; i++)
+            {
+                <option value="@i">@i</option>
+            }
+          </select>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <input type="button" class="btn-sm btn-success center-block" id="secondbtnid" value="Click Me !" />
+</div>
+
+
