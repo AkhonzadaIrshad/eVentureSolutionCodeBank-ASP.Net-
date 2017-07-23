@@ -1,0 +1,66 @@
+﻿@using UpdateForiegnKeyResolverDemo.View_Models;
+
+@{
+    List<ProductModel> products = ViewBag.Products;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-4">
+                    @RenderBody()
+                </div>
+            </div>
+            <div class="row">
+                @if (products != null)
+            {
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var product in products)
+                            {
+                                <tr>
+                                    <td>
+                                        @product.Id
+                                    </td>
+                                    <td>
+                                        @product.Name
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("ProductCategory",product.CategoryList, new { @class = "form-control" })
+                                    </td>
+                                    <td>
+                                        <a href="/Home/Edit/@product.Id" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

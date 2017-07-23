@@ -1,0 +1,21 @@
+﻿@using UpdateForiegnKeyResolverDemo.View_Models;
+@model ProductModel
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Add", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name, new { @class = "text-muted" })
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.Category, Model.CategoryList, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+
+            <input class="btn btn-warning" value="Update" type="submit" />
+            <a href="/Home/Index" class="btn btn-danger">Cancel</a>
+        </div>
+}
