@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+
+<button id="btn">Click Me !!</button>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(function() {
+
+        $("#btn").click(function() {
+
+            var obj = {
+
+                "Name": "Irshad",
+                "Password":"2333"
+
+            };
+
+            
+
+
+            $.ajax({
+
+                url: "/Home/Index",
+                method: "Get",
+                data:obj,
+                success:function() {
+                    alert("YES AJAX SUCCESS");
+                }
+
+
+            }).error(function() {
+
+                alert("FAILED :(");
+
+            });
+
+        });
+
+
+    });
+
+</script>
