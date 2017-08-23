@@ -1,0 +1,74 @@
+﻿@using ClassLibrary1DEl
+
+@{
+    Layout = "../Shared/_TempLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Street Address</th>
+        <th>City</th>
+        <th>Country</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var p in (List<Person>)ViewBag.AllPersons)
+    {
+        <tr class="tablerow" id="@p.PersonId">
+            <td>@p.Name</td>
+            <td>@p.Address.StreetAddress</td>
+            <td>@p.Address.City.Name</td>
+            <td>@p.Address.City.Country.Name</td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+    
+<div id="mdlarea">
+    
+</div>
+
+</body>
+</html>
+@section indexscript{
+
+    <script>
+
+        $(".tablerow").click(function() {
+
+
+            var id = $(this).attr("id");
+
+            //alert("person Id"+id);
+
+            $.ajax({
+
+                url: "/Home/ShowDetail/"+id,
+                method:"Get",
+                success: function (response) {
+                    $("#mdlarea").html(response);
+                    $("#dtlview").modal();
+
+
+                    //alert("AJAX SUccess");
+                }
+            }).error(function() {
+                alert("AJAX FAILED");
+            });
+
+
+        });
+
+    </script>
+}

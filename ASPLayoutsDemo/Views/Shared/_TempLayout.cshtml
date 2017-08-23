@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_TempLayout</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Feature</a>
+            </li>
+            <li>
+                <a href="#">Lates</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="#">Welcome</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+
+
+
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+</div>
+    
+    
+
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("indexscript",false)
+</body>
+</html>
+

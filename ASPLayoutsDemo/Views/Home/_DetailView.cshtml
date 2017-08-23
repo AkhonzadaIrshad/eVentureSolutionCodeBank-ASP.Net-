@@ -1,0 +1,27 @@
+﻿@using ClassLibrary1DEl;
+@{
+    Person detail = (Person)ViewBag.PersonDetail;
+}
+
+<div class="modal fade" id="dtlview">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span>Person Detail</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                
+                <span>@detail.Name</span>
+                <span>@detail.Address.StreetAddress</span>
+                <span>@detail.Address.City.Name</span>
+                <span>@detail.Address.City.Country.Name</span>
+
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
