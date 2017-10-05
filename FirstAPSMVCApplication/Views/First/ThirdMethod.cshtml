@@ -1,0 +1,44 @@
+﻿@using FirstAPSMVCApplication.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ThirdMethod</title>
+</head>
+<body>
+<div>
+    @*@for (int i = 0; i < 10; i++)
+    {
+        <h1>@ViewBag.FirstViewBag</h1>
+        
+    }*@
+    
+    @{
+        FirstClass obj = (FirstClass)ViewBag.FirstObject;
+    }
+
+    
+    @if (obj!= null)
+    {
+        <ul>
+            <li>@obj.FirstName</li>
+            <li>@obj.SecondName</li>
+            <li>@obj.FirstRollNumber</li>
+        </ul>
+    }
+    else
+    {
+        <ul>
+            <li>Not Found</li>
+           
+        </ul>
+    }
+
+</div>
+</body>
+</html>

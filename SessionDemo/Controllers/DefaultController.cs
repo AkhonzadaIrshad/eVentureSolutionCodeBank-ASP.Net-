@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿ 
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SessionDemo.Models;
@@ -12,6 +11,13 @@ namespace SessionDemo.Controllers
         public ActionResult Index()
         {
             LoginUserModel user = (LoginUserModel)Session[SessionHelper.USER];
+
+          
+
+           
+
+
+
             if (user == null) return RedirectToAction("Login");
             return View();
         }
@@ -29,6 +35,9 @@ namespace SessionDemo.Controllers
             if (userModel.Password == "Admin")
             {
                 Session.Add(SessionHelper.USER, userModel);
+
+                 
+
                 return RedirectToAction("Index", "Default");
             }
             ViewBag.NotFound = "Password is Wrong";
