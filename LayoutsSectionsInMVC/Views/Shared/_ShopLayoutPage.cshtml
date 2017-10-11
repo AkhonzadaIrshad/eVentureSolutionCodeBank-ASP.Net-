@@ -1,0 +1,87 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta lang="en-us" charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+
+    @RenderSection("Style",false)
+
+
+</head>
+<body class="container-fluid">
+
+    <div class="row">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainmenu">
+                        <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                    </button>
+                    <a class="navbar-brand" href="/Home/MainPage">Smart<span class="glyphicon glyphicon-phone"></span>obiles</a>
+                </div>
+                <div class="collapse navbar-collapse" id="mainmenu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Home/Products"><span class="glyphicon glyphicon-home"></span> Products</a></li>
+                        <li><a href="/Home/ContactUs"><span class="glyphicon glyphicon-star-empty"></span> Contact Us</a></li>
+                        <li><a href="/Home/Log In"><span class="glyphicon glyphicon-star-empty"></span> Log In</a></li>
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <br />
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-3">
+
+            <div class="row">
+
+                <ul class="list-group">
+                    <li class="list-group-item">Home</li>
+                    <li class="list-group-item">First</li>
+                    <li class="list-group-item">Second</li>
+                    <li class="list-group-item">Third</li>
+                    <li class="list-group-item">Fourth</li>
+                </ul>
+
+            </div>
+
+            <div class="row" style="background:red">
+
+                @if (ViewBag.TopProduct != null)
+            {
+                    @RenderPage("~/Views/Home/_ProductView.cshtml", ViewBag.TopProduct)
+                }
+
+
+            </div>
+        
+
+        </div>
+
+        <div class="col-lg-9">
+
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- JavaScript -->
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

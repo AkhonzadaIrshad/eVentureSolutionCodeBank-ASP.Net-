@@ -1,0 +1,27 @@
+﻿@using WebApplication6.Models;
+
+
+@{ 
+    string Name = "222";
+    Product product = (Product)PageData[0];
+
+}
+    <div class="col-lg-3">
+        <div class="well">
+
+            <div class="thumbnail">
+                <img src="@Url.Content(product.Image)" />
+            </div>
+            <center>
+                <h4>Name @product.Name</h4>
+                <h3>
+                    Price @product.Price /-
+                </h3>
+
+            </center>
+        </div>
+    </div>
+
+
+
+

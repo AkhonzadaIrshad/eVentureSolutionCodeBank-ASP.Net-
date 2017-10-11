@@ -1,0 +1,29 @@
+﻿@using WebApplication6.Models;
+@model List<Product>
+
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_ShopLayoutPage.cshtml";
+}
+
+
+@section Style{
+
+    <style>
+        h2 {
+            color: red;
+        }
+    </style>
+
+
+}
+
+
+<h2>Products</h2>
+@foreach (Product item in Model)
+{
+    @RenderPage("~/Views/Home/_ProductView.cshtml", item);
+}
+
+

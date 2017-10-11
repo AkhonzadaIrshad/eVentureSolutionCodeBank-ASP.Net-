@@ -1,0 +1,64 @@
+﻿@using LayoutsSectionsInMVC.Models
+@model User
+
+@{
+    ViewBag.Title="Login";
+    Layout = "~/Views/Shared/_FirstLayout.cshtml";
+}
+<html>
+<head>
+   
+
+    @section Style{
+        <style>
+            h1 {
+                color: red;
+            }
+        </style>
+    }
+
+</head>
+<body>
+    <div>
+        
+        <h5>@ViewBag.Message</h5>
+        <h2>Login</h2>
+        
+        @*<form action="/Second/Login" method="post">
+            <input type="text" name="UserName" value=""  /><br />
+            <input type="text" name="Password" value="" /><br />
+            <input type="submit"  value="Send" />
+        </form>*@
+
+        @*@using (Html.BeginForm("Login", "Second", FormMethod.Post))
+        {
+
+            @Html.TextBox("UserName",null,new { style="background:white;" })
+            @Html.TextBox("Password", null)
+            <input type="submit" value="Submit"/>
+        }*@
+        
+        
+        @using (Html.BeginForm("Login", "Second", FormMethod.Post))
+        {
+
+            @Html.TextBoxFor(x=>x.UserName)
+            @Html.PasswordFor(x => x.Password)
+
+            <input type="submit" value="Submit"/>
+            <input type="reset" value="Reset" />
+        }
+        
+
+
+
+
+
+    </div>
+    @section Script{
+        <script>
+            //alert("Login")
+        </script>
+    }
+</body>
+</html>
