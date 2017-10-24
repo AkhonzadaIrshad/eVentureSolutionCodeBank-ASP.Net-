@@ -1,4 +1,5 @@
-﻿@using FirstAPSMVCApplication.Models
+﻿@using FirstAPSMVCApplication.Models;
+@model FirstClass
 @{
     Layout = null;
 }
@@ -11,34 +12,77 @@
     <title>ThirdMethod</title>
 </head>
 <body>
-<div>
-    @*@for (int i = 0; i < 10; i++)
-    {
-        <h1>@ViewBag.FirstViewBag</h1>
+    <div>
+
+
+        @*<form action="/First/ThirdMethod" method="post">
+
+
+                <input type="text" name="FirstName"/><br/>
+                <input type="text" name="FirstRollNumber"/><br/>
+                <input type="text" name="SecondName"/><br/>
+                <input type="submit"/>
+            </form>
+            <br />*@
+
+
+
+        @if (ViewBag.Message != null)
+        { <h3>
+            @ViewBag.Message;
+        </h3>
+
+        }
+        <br />
+        @using (Html.BeginForm("ThirdMethod", "First", FormMethod.Post))
+        {
+
+            @Html.TextBoxFor(x => x.FirstName)<br /><br />
+            @Html.TextBoxFor(x => x.FirstRollNumber)<br /><br />
+            @Html.TextBoxFor(x => x.SecondName)<br /><br />
+            <input type="submit" />
+
+
+        }
+
+
+
+
+        @*@for (int i = 0; i < 10; i++)
+            {
+                <h1>@ViewBag.FirstViewBag</h1>
+
+            }*@
+
+        @{
+            List<FirstClass> objs = (List<FirstClass>)ViewBag.FirstObject;
+        }
         
-    }*@
-    
-    @{
-        FirstClass obj = (FirstClass)ViewBag.FirstObject;
-    }
+        @if (objs != null && objs.Count > 0)
+        {
+            foreach (FirstClass obj in objs)
+             {
+                 if (obj != null)
+                 {
+                     <ul>
+                         <li>@obj.FirstName</li>
+                         <li>@obj.SecondName</li>
+                         <li>@obj.FirstRollNumber</li>
+                     </ul>
+                 }
+                 else
+                 {
+                     <ul>
+                         <li>Not Found</li>
 
-    
-    @if (obj!= null)
-    {
-        <ul>
-            <li>@obj.FirstName</li>
-            <li>@obj.SecondName</li>
-            <li>@obj.FirstRollNumber</li>
-        </ul>
-    }
-    else
-    {
-        <ul>
-            <li>Not Found</li>
-           
-        </ul>
-    }
+                     </ul>
+                 }
+             }
 
-</div>
+        }
+       
+       
+
+    </div>
 </body>
 </html>

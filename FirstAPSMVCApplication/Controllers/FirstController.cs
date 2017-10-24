@@ -17,18 +17,44 @@ namespace FirstAPSMVCApplication.Controllers
             return "Second MVC Method";
         }
 
+
+        [HttpGet]
         public ViewResult ThirdMethod()
         {
 
            // ViewBag.FirstViewBag = "Evs Lahore";
-           ViewBag.FirstObject=new FirstClass()
-           {
-               FirstName = "ABC",
-               FirstRollNumber = 11,
-               SecondName = "XYZ"
-           };
+
+            FirstContext db=new  FirstContext();
+
+
+            ViewBag.FirstObject = db.FirstClasses.ToList();
 
             return View();
+        }
+
+        [HttpPost]
+        public ViewResult ThirdMethod(FirstClass obj)
+        {
+            //ViewBag.FirstObject = obj;
+
+            try
+            {
+                FirstContext db=new FirstContext();
+                db.FirstClasses.Add(obj);
+                db.SaveChanges();
+                ViewBag.Message = "Successfully Added";
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = $"Something Went Wrong Details {e.Message}";
+                return View();
+            }
+
+
+
+            return View();
+
         }
 
 
