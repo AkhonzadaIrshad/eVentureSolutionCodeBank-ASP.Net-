@@ -1,0 +1,26 @@
+﻿@using FirstAspMVC324.Models;
+@model LoginViewModel
+@{
+    Layout = null;
+}
+<span>
+    @ViewBag.Message
+</span>
+
+@*<form action="/Home/LoginDemo" method="post">
+        <input type="text" name="username" placeholder="User Name" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="submit" value="Login" />
+    </form>*@
+<form action="/Home/LoginDemo" method="post">
+   @Html.TextBoxFor(x=>x.UserName,null,new { placeholder = "User Name" })
+   @Html.PasswordFor(model=>model.Password, new { placeholder = "Password",@class="form-control" })
+    
+    <input type="submit" value="Login" />
+    
+
+</form>
+
+
+
+

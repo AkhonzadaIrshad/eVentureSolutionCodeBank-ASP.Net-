@@ -1,0 +1,158 @@
+﻿@using CRUDwithJQUERY.Models
+@using CRUDwithJQUERY.ViewModels;
+@model PersonModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="alert" id="alertarea"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                Name
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+            <div class="col-lg-3">
+                Email
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            </div>
+            <div class="col-lg-3">
+                Street
+                @Html.TextBoxFor(x => x.Street, new { @class = "form-control" })
+            </div>
+            <div class="col-lg-3">
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        City
+                        @Html.DropDownListFor(x => x.CityId, (List<SelectListItem>)ViewBag.Cities, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-2">
+                        <br />
+                        <input type="button" name="name" value="ADD" id="submitbtn" class="btn btn-success" />
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    @{
+                        List<Person> Persons = ViewBag.Persons;
+                    }
+                    @if (Persons != null)
+            {
+                foreach (var person in Persons)
+                {
+
+
+                            <tr>
+
+                                <td>@person.Name</td>
+                                <td>@person.Email</td>
+                                <td>@person.Address.Street</td>
+                                <td>@person.Address.City.Name</td>
+                                <td>
+                                    <input type="button" name="name" value="edit" class="btn-xs btn btn-warning" />|
+                                    <input type="button" name="name" value="delete" class="btn-xs btn btn-danger" />
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+
+        $(function () {
+
+
+            $("#submitbtn").click(function () {
+                var name = $("#Name");
+                var email = $("#Email");
+                var street = $("#Street");
+                var cityId = $("#CityId");
+                var person = {
+                    "Name": name.val(),
+                    "Email": email.val(),
+                    "Street": street.val(),
+                    "CityId": cityId.val()
+                };
+
+
+
+                //alert(person.Name)
+                //alert(person.Email)
+                //alert(person.Street)
+                //alert(person.CityId)
+
+                $.ajax({
+                    url: "/Person/AddPerson",
+                    data: person,
+                    method: "Post"
+                }).done(function (response) {
+
+                    if (response == true) {
+                        $("#alertarea").html("success !!!").addClass("alert-success");
+                        setTimeout(() => {
+                            window.location.href = "/Person/Index";
+                        },5000);
+                       
+
+                    } else {
+                        $("#alertarea").html(response).addClass("alert-danger");
+                        setTimeout(() => {
+                            $("#alertarea").html("").removeClass("alert-danger");
+                        },5000);
+                      
+                    }
+                }).error(function () {
+                    $("#alertarea").html("failed !!!").addClass("alert-danger");
+                    setTimeout(() => {
+                        $("#alertarea").html("").removeClass("alert-danger");
+                    },5000);
+                      
+                });
+            });
+
+
+        });
+
+
+
+
+    </script>
+
+
+</body>
+</html>

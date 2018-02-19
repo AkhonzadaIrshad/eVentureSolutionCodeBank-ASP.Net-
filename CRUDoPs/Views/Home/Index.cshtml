@@ -1,0 +1,135 @@
+﻿@using CRUDoPs.ViewModels
+@model StudentModel
+
+@{
+    ViewBag.Title = "Index";
+    List<StudentModel> studentModels = (List<StudentModel>)ViewBag.Students;
+}
+
+@using (Ajax.BeginForm("Register", "Home", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "Registered" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)<br />
+        @Html.TextBoxFor(x => x.Name,null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(x => x.Email)<br />
+        @Html.TextBoxFor(x => x.Email, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Street)<br />
+        @Html.TextBoxFor(x => x.Street, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Street, null, new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Register" id="actionbutton" />
+    </div>
+
+}
+
+
+@if (studentModels.Count > 0)
+{
+    <div class="row"  style="height:300px;overflow-y: scroll">
+        
+   
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>STREET</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="studentsgrid">
+            @foreach (StudentModel student in studentModels)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.Street</td>
+                    <td data-sid="@student.Id" data-sname="@student.Name" data-semail="@student.Email" data-sstreet="@student.Street">
+                        <span class="glyphicon glyphicon-edit update action"></span> |
+                        <span class="glyphicon glyphicon-trash delete action"></span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+
+
+        </table>
+    </div>
+
+}
+
+
+@section Styles{
+    <style>
+        .action {
+            cursor: pointer;
+        }
+    </style>
+}
+
+@section Scripts{
+    <script>
+        function Registered(students) {
+            $("#studentsgrid").html("");
+            if (students != false) {
+                for (var i = 0; i < students.length; i++) {
+                    var temp = "<tr><td>" +
+                        students[i].Id
+                        + "</td>" +
+                        "<td>" +
+                        students[i].Name +
+                        "</td><td>" +
+                        students[i].Email +
+                        "</td><td>" +
+                        students[i].Street +
+                        "</td>" +
+                        "<td data-sid='"+students[i].Id+"' data-sname='"+students[i].Name+"' data-semail='"+students[i].Email+"' data-sstreet='"+students[i].Street+"'><span class='glyphicon glyphicon-edit update action'></span>|<span class='glyphicon glyphicon-trash delete action'></span></td></tr>";
+                    $("#studentsgrid").append(temp);
+
+                    $(".update").click(function () {
+
+                        var row = $(this).parents("td");
+                        $("#Id").val(row.data("sid"));
+                        $("#Name").val(row.data("sname"));
+                        $("#Email").val(row.data("semail"));
+                        $("#Street").val(row.data("sstreet"));
+                        $("#actionbutton").val("Update");
+
+
+                    });
+                }
+            } else {
+                alert(students);
+            }
+
+
+        }
+
+        $(".update").click(function () {
+
+            var row = $(this).parents("td");
+            $("#Id").val(row.data("sid"));
+            $("#Name").val(row.data("sname"));
+            $("#Email").val(row.data("semail"));
+            $("#Street").val(row.data("sstreet"));
+            $("#actionbutton").val("Update");
+
+
+        });
+
+    </script>
+}
