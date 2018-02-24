@@ -1,0 +1,73 @@
+﻿@using JQueryGRID.Models;
+@model UserViewModel
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <div id="formarea" class="hidden">
+        <span class="Index">0</span>
+        <input type="text" name="UserName" class="UserName" value="" />
+        <input type="radio" name="Gender" class="Gender" value="Male" />Male
+        <input type="radio" name="Gender" class="Gender" value="Female" />Female
+        <select name="Country" class="Country">
+            <option value="1">Option 1</option>
+            <option value="2">Option 1</option>
+        </select>
+        <input type="text" name="Description" class="Description" />
+    </div>
+    @*<input type="text" name="UserViewModels[0].UserName" class="UserName" value="" />
+    <input type="radio" name="UserViewModels[0].Gender" class="Gender" value="Male" />Male
+    <input type="radio" name="UserViewModels[0].Gender" class="Gender" value="Female" />Female
+    <select name="UserViewModels[0].Country" class="Country">
+        <option value="1">Option 1</option>
+        <option value="2">Option 1</option>
+    </select>
+    <input type="text" name="UserViewModels[0].Description" class="Description" />*@
+
+    <form action="/Home/Save" method="post">
+        
+      
+   
+    <table class="table">
+        <thead>
+        <tr>
+        </tr>
+        </thead>
+        <tbody id="dataarea">
+
+        </tbody>
+
+    </table>
+        <button id="addrow" type="button">Add Row</button>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        var clonedform = $("#formarea").clone();
+        clonedform.find(".Index").html = 0;
+        clonedform.find(".UserName").attr("name", "UserModel[0].UserName");
+        clonedform.find(".Gender").attr("name", "UserModel[0].Gender");
+        clonedform.find(".Country").attr("name", "UserModel[0].Country");
+        clonedform.find(".Description").attr("name", "UserModel[0].Description");
+        clonedform.removeClass("hidden");
+        $("#dataarea").append(clonedform);
+        var index = 1;
+        $("#addrow").click(function () {
+            var clonedform = $("#formarea").clone();
+            clonedform.find(".Index").text(index);
+            clonedform.find(".UserName").attr("name", "UserModel[" + index + "].UserName");
+            clonedform.find(".Gender").attr("name", "UserModel[" + index + "].Gender");
+            clonedform.find(".Country").attr("name", "UserModel[" + index + "].Country");
+            clonedform.find(".Description").attr("name", "UserModel[" + index + "].Description");
+            clonedform.removeClass("hidden");
+            $("#dataarea").append(clonedform);
+            index++;
+        });
+    });
+</script>
